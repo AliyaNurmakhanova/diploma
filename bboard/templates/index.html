@@ -2,7 +2,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css">
 
-{% block title  %} Index {% endblock title %}
+{% block title  %} Main {% endblock title %}
 
 {% block content %}
 <style>
@@ -181,7 +181,7 @@ p {
             <h4>Студенты</h4>
             <p>Whenever you need free templates in HTML CSS, you just remember TemplateMo website.</p>
             <div class="main-button">
-              <a href="#">Перейти</a>
+              <a href="{% url 'students_list' %}">Перейти</a>
             </div>
           </div>
         </div>
@@ -196,7 +196,7 @@ p {
             <h4>Члены комиссии</h4>
             <p>You can browse free templates based on different tags such as digital marketing, etc.</p>
             <div class="main-button">
-              <a href="#">Перейти</a>
+              <a href="{% url 'commissions_list' %}">Перейти</a>
             </div>
           </div>
         </div>
@@ -211,7 +211,7 @@ p {
             <h4>Документы</h4>
             <p>You can start learning HTML CSS by modifying free templates from our website too.</p>
             <div class="main-button">
-              <a href="#">Перейти</a>
+              <a href="{% url 'documents_list' %}">Перейти</a>
             </div>
           </div>
         </div>

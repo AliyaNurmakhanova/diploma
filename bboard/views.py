@@ -15,3 +15,12 @@ def edit_stud_page(request):
 
 def forgot_pw(request):
     return render(request, 'forgot_pw.html')
+
+def students(request):
+    return render(request, 'students.html')
+
+def commissions(request):
+    return render(request, 'commissions.html')
+
+def documents(request):
+    return render(request, 'documents.html')
