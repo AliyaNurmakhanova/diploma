@@ -5,90 +5,293 @@
 {% block title  %} Index {% endblock title %}
 
 {% block content %}
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="album py-5 bg">
-        <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 g-3">
-            <div class="col">
-              <div class="card shadow-sm">
-<!--                <img  src="{% static 'images/add-students.png' %}" class="bd-placeholder-img" width="345" height="250" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">-->
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c"></rect>
-                  <text x="40%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                </svg>
-                <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+<style>
+.section {
+    padding-top: 30px;
+    margin-top: 80px;
+    margin-bottom: 50px;
+}
+* {
+    box-sizing: border-box;
+}
+html, body {
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    margin: 0;
+    font-family: var(--bs-body-font-family);
+    font-size: var(--bs-body-font-size);
+    font-weight: var(--bs-body-font-weight);
+    line-height: var(--bs-body-line-height);
+    color: var(--bs-body-color);
+    text-align: var(--bs-body-text-align);
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+:root {
+    --swiper-navigation-size: 44px;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+::selection {
+    background: #7a6ad8;
+    color: #fff;
+}
+@media (min-width: 1400px)
+.container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 1320px;
+}
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-right: auto;
+    margin-left: auto;
+}
+div {
+    display: block;
+}
+.row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+    margin-left: calc(1.5 * var(--bs-gutter-x));
+}
+@media (min-width: 992px)
+.col-lg-4 {
+    flex: 0 0 auto;
+    width: 33.33333333%;
+}
+.row>* {
+    flex-shrink: 0;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-top: var(--bs-gutter-y);
+}
+div{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
+.services .service-item .icon {
+    width: 140px;
+    height: 140px;
+    display: inline-block;
+    text-align: center;
+    line-height: 140px;
+    background-color: #566F9E;
+    border-radius: 50%;
+    position: absolute;
+    right: 0;
+    top: -65px;
+}
+.services .service-item .icon img {
+    max-width: 50px;
+    transition: all .2s;
+}
 
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c"></rect>
-                  <text x="40%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                </svg>
-                <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+<!--.services .service-item .main-content {-->
+<!--    border-radius: 25px;-->
+<!--    padding: 80px 30px 50px 30px;-->
+<!--    background-color: white;-->
+<!--    margin-bottom: 30px;-->
+<!--    margin-right: 80px;-->
+<!--    transition: all .4s;-->
+<!--}-->
+<!--.services .service-item {-->
+<!--    position: relative;-->
+<!--    margin-top: 95px;-->
+<!--}-->
 
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c"></rect>
-                  <text x="40%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                </svg>
-                <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+.services .service-item .main-content {
+    border-radius: 25px;
+    padding: 80px 30px 50px 40px;
+    background-color: white;
+    margin-bottom: 5px;
+    margin-right: 50px;
+    transition: all .4s;
+}
+.services .service-item {
+    position: relative;
+    margin-top: 50px;
+}
 
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c"></rect>
-                  <text x="40%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                </svg>
-                <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+.main-button a {
+    display: inline-block;
+    background-color: #566F9E;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 40px;
+    padding: 0px 25px;
+    border-radius: 20px;
+    transition: all .3s;
+}
+a {
+    text-decoration: none !important;
+    margin: 0;
+    border: 0;
+    outline: 0;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-top: -15px;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+</style>
+
+<div class="services section" id="services">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+<!--          <div class="icon">-->
+<!--            <img src="{% static 'images/add-students.png' %}" alt="web experts">-->
+<!--          </div>-->
+          <div class="main-content">
+            <h4>Мой профиль</h4>
+            <p>You can start learning HTML CSS by modifying free templates from our website too.</p>
+            <div class="main-button">
+              <a href="#">Перейти</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+<!--          <div class="icon">-->
+<!--            <img src="{% static 'images/add-students.png' %}" alt="online degrees">-->
+<!--          </div>-->
+          <div class="main-content">
+            <h4>Студенты</h4>
+            <p>Whenever you need free templates in HTML CSS, you just remember TemplateMo website.</p>
+            <div class="main-button">
+              <a href="#">Перейти</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+<!--          <div class="icon">-->
+<!--            <img src="{% static 'images/add-students.png' %}" alt="short courses">-->
+<!--          </div>-->
+          <div class="main-content">
+            <h4>Члены комиссии</h4>
+            <p>You can browse free templates based on different tags such as digital marketing, etc.</p>
+            <div class="main-button">
+              <a href="#">Перейти</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+<!--          <div class="icon">-->
+<!--            <img src="{% static 'images/add-students.png' %}" alt="web experts">-->
+<!--          </div>-->
+          <div class="main-content">
+            <h4>Документы</h4>
+            <p>You can start learning HTML CSS by modifying free templates from our website too.</p>
+            <div class="main-button">
+              <a href="#">Перейти</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+<!--          <div class="icon">-->
+<!--            <img src="{% static 'images/add-students.png' %}" alt="web experts">-->
+<!--          </div>-->
+          <div class="main-content">
+            <h4>Расписание</h4>
+            <p>You can start learning HTML CSS by modifying free templates from our website too.</p>
+            <div class="main-button">
+              <a href="#">Перейти</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+<!--          <div class="icon">-->
+<!--            <img src="{% static 'images/add-students.png' %}" alt="web experts">-->
+<!--          </div>-->
+          <div class="main-content">
+            <h4>Аналитика</h4>
+            <p>You can start learning HTML CSS by modifying free templates from our website too.</p>
+            <div class="main-button">
+              <a href="#">Перейти</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+<!--          <div class="icon">-->
+<!--            <img src="{% static 'images/add-students.png' %}" alt="web experts">-->
+<!--          </div>-->
+          <div class="main-content">
+            <h4>Информации</h4>
+            <p>You can start learning HTML CSS by modifying free templates from our website too.</p>
+            <div class="main-button">
+              <a href="#">Перейти</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+<!--          <div class="icon">-->
+<!--            <img src="{% static 'images/add-students.png' %}" alt="web experts">-->
+<!--          </div>-->
+          <div class="main-content">
+            <h4>Новости</h4>
+            <p>You can start learning HTML CSS by modifying free templates from our website too.</p>
+            <div class="main-button">
+              <a href="#">Перейти</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+<!--          <div class="icon">-->
+<!--            <img src="{% static 'images/add-students.png' %}" alt="web experts">-->
+<!--          </div>-->
+          <div class="main-content">
+            <h4>Прочее</h4>
+            <p>You can start learning HTML CSS by modifying free templates from our website too.</p>
+            <div class="main-button">
+              <a href="#">Перейти</a>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 {% endblock content %}

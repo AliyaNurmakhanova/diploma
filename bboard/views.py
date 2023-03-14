@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 def login_page(request):
@@ -7,8 +7,11 @@ def login_page(request):
 def index(request):
     return render(request, 'index.html')
 
-def basic(request):
-    return render(request, 'basic.html')
+def student_page(request):
+    return render(request, 'student_page.html')
+
+def edit_stud_page(request):
+    return render(request, 'edit_stud_page.html')
 
 def forgot_pw(request):
     return render(request, 'forgot_pw.html')
