@@ -12,3 +12,6 @@ def basic(request):
 
 def forgot_pw(request):
     return render(request, 'forgot_pw.html')
+
+def documents(request):
+    return render(request, 'document_page.html')

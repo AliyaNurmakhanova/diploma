@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<!--{% extends 'basic.html' %}-->
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/document.css' %}" type="text/css">
+
+{% block title %} Documents {% endblock title %}
+
+{% block content %}
+
+    <section class="documents_page">
+        <div>
+            <nav id="nbar" class="">
+                <ul id="menu">
+                    <li><a href="">Протокол 1</a></li>
+                    <li><a href="">Протокол 2</a></li>
+                    <li><a href="">Протокол 3</a></li>
+                </ul>
+            </nav>
+            <div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock content %}
