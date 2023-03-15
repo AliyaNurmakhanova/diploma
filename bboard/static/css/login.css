@@ -14,7 +14,7 @@
 }
 
 a {
-    color: #2776B8;
+    color: #566F9;
     text-decoration: underline;
 }
 
@@ -48,7 +48,20 @@ body {
     font-weight: 400;
     line-height: 1.5;
     color: #212529;
-    background-color: #fff;
+    background-color: #F2F4FA;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
+}
+
+.main-button a {
+    display: inline-block;
+    background-color: #566F9E;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 40px;
+    padding: 0px 25px;
+    border-radius: 20px;
+    transition: all .3s;
 }
