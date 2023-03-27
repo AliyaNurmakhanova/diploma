@@ -54,3 +54,22 @@ def students(request):
 
 def commissions(request):
     return render(request, 'commissions.html')
+
+def add_student(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        lastname = request.POST.get('lastname')
+        middlename = request.POST.get('middlename')
+        birthday = request.POST.get('birthday')
+        diploma_title = request.POST.get('diploma_title')
+
+        stud = Students(
+            name = name,
+            lastname = lastname,
+            middlename = middlename,
+            birthday = birthday,
+            diploma_title = diploma_title
+        )
+        stud.save()
+        return redirect('students_list')
+    return render(request, 'students.html')
