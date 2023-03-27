@@ -18,18 +18,13 @@
     color: darkblue;
 }
 
-#nbar act{
-    color: darkblue;
-}
-
 .main_content {
     margin: 100px;
 }
 
-.text{
+#text{
     color: black;
 }
-
 </style>
 <script>
      document.getElementById("myDIV").style.display = "none";
@@ -38,22 +33,23 @@
         <div>
             <nav id="nbar" class="">
                 <ul id="menu">
-                    <li class="active"><a href="" id="act">Протокол 1</a></li>
-                    <li><a href="{% url 'documents_list_second' %}">Протокол 2</a></li>
+                    <li><a href="{% url 'documents_list' %}">Протокол 1</a></li>
+                    <li class="active"><a href="">Протокол 2</a></li>
                     <li><a href="{% url 'documents_list_third' %}">Протокол 3</a></li>
                 </ul>
             </nav>
             <div class="main_content">
                 {% if students %}
-                    <p class="text">  Протокол 1 <br> </p>
+                    <p class="text">  Протокол 2 <br> </p>
                     {% for i in students %}
                         <div>
-                            <p class="text"> <a href="" download=""> {{ i.name_kz }} {{ i.lastname_kz}} </a> </p>
+                            <p id="text">{{ i.name }} {{ i.lastname}}</p>
                         </div>
                     {% endfor %}
                 {% endif %}
             </div>
         </div>
+
     </section>
 
 {% endblock content %}

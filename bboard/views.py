@@ -5,6 +5,7 @@ from .models import Students
 from docxtpl import DocxTemplate
 from django.contrib import auth
 
+
 def login_page(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -37,6 +38,31 @@ def forgot_pw(request):
 def documents(request):
     students = Students.objects.all()
     return render(request, 'document_page.html', {'students': students})
+    def example():
+        personNames = ["Aliya", "Samal", "Safia", "Kamshat"]
+
+        for pItr, p in enumerate(personNames):
+            doc = DocxTemplate("inviteTmpl.docx")
+
+            context = {
+                "todayStr": "03.03.2023",
+                "recipientName": p,
+                "evntDtStr": "08.03.2023",
+                "venueStr": "the beach",
+                "bannerImg": ""
+            }
+
+            doc.render(context)
+
+            doc.save("aaaa_{0}.docx".format(p))
+
+def documents_second(request):
+    students = Students.objects.all()
+    return render(request, 'document_page_second.html', {'students': students})
+
+def documents_third(request):
+    students = Students.objects.all()
+    return render(request, 'document_page_third.html', {'students': students})
 
 # def students(request):
 #     return render(request, 'students.html')
@@ -46,3 +72,10 @@ def documents(request):
 
 # def documents(request):
 #     return render(request, 'documents.html')
+
+def students(request):
+    stud = Students.objects.all()
+    return render(request, 'students.html', {'stud': stud})
+
+def commissions(request):
+    return render(request, 'commissions.html')
