@@ -68,27 +68,31 @@ body {
 
               <hr class="my-4">
 
-              <form>
+              <form action="" method="post">
+                {% csrf_token %}
                 <div class="form-floating mb-3">
-                  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                  <input type="text" class="form-control" id="floatingInput" placeholder="Login" name="username">
                   <label for="floatingInput">Логин</label>
                 </div>
                 <div class="form-floating mb-3">
-                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
                   <label for="floatingPassword">Пароль</label>
                 </div>
+
+                <p>
+                {% if error %}
+<!--                  <p><strong>{{ error }}</strong></p>-->
+                  <label class="error"><strong>{{ error }}</strong></label>
+                {% endif %}
+                </p>
 
                 <div class="form-check mb-4">
                   <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
                   <label class="form-check-label" for="rememberPasswordCheck">Запомнить пароль</label>
                 </div>
 
-<!--                <div class="d-grid">-->
-<!--                  <button class="btn btn-primary btn-login fw-bold" type="submit" >Войти</button>-->
-<!--                </div>-->
-
-                <div class="main-button text-center">
-                  <a href="{% url 'index' %}">Войти</a>
+                <div class="d-grid">
+                  <button class="btn btn-primary btn-login fw-bold" type="submit" >Войти</button>
                 </div>
 
                 <div class="text-center my-3">
