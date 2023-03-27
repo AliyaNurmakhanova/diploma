@@ -12,4 +12,4 @@ class Students(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Студенты'
+        verbose_name = 'Student'
