@@ -6,3 +6,6 @@ myvenv
 db.sqlite3
 /static
 .DS_Store
+example.log
+bboard/exampleDOCXTPL.py
+bboard/templates/crudtest.html

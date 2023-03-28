@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -38,28 +40,35 @@ def student_page(request, id):
 
     return render(request, 'student_page.html', context)
 
-def download_document(request):
-    name = "Aliya"
+def download_document(request, stud_id):
+    logging.basicConfig(filename='example.log', level=logging.DEBUG)
+    student = get_object_or_404(Students, id=stud_id)
+    context = {
+        'student': student
+    }
+    name = student.name
+    lastname = student.lastname
+    middlename = student.middlename
 
-    doc = DocxTemplate("bboard/static/invite.docx")
+    doc = DocxTemplate("bboard/static/protocol_2.docx")
 
     context = {
-        "todayStr": "03.03.2023",
-        "recipientName": name,
-        "evntDtStr": "08.03.2023",
-        "venueStr": "the beach",
-        "bannerImg": ""
+        "lastname": lastname,
+        "name": name,
+        "middlename": middlename,
+        "speciality": "6B0602102 CS",
     }
 
     doc.render(context)
 
-    doc.save("aaaa_{0}.docx".format(name))
-    doc_name = str("aaaa_{0}.docx".format(name))
+    doc.save("{0}_{1}_Протокол_2.docx".format(name, lastname))
+    doc_name = f"{name}_{lastname}_Протокол_2.docx"
+    logging.debug("Document name: {}".format(doc_name))
     print(doc_name)
 
     # Создать HTTP-ответ, который будет содержать созданный документ
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
-    response['Content-Disposition'] = 'attachment; filename={doc_name}'
+    response['Content-Disposition'] = f'attachment; filename={doc_name}'
 
     with io.open(doc_name, 'rb') as file:
         document_bytes = file.read()
