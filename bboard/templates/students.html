@@ -324,6 +324,12 @@
 		}
 	});
 });
+
+
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+});
+
 </script>
     <section class="documents_page">
 <!--        <div>-->
@@ -372,8 +378,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                {% if stud %}
-                    {% for i in stud %}
+                {% if students %}
+                    {% for student in students %}
                         <tr>
                             <td>
                                 <span class="custom-checkbox">
@@ -381,14 +387,15 @@
                                     <label for="checkbox1"></label>
                                 </span>
                             </td>
-							<td>{{i.lastname}}</td>
-                            <td>{{i.name}}</td>
-                            <td>{{i.middlename}}</td>
-                            <td>{{i.birthday}}</td>
-                            <td>{{i.diploma_title}}</td>
+							<td>{{student.lastname}}</td>
+                            <td>{{student.name}}</td>
+                            <td>{{student.middlename}}</td>
+                            <td>{{student.birthday}}</td>
+                            <td>{{student.diploma_title}}</td>
                             <td>
                                 <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                 <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								<a href="{% url 'student_page' id=student.id %}">профиль</a>
                             </td>
                         </tr>
                     {% endfor %}

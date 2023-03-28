@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Students
 from docxtpl import DocxTemplate
 from django.contrib import auth
@@ -26,8 +26,13 @@ def logout_page(request):
 def index(request):
     return render(request, 'index.html', {'username': auth.get_user(request).username})
 
-def student_page(request):
-    return render(request, 'student_page.html', {'username': auth.get_user(request).username})
+def student_page(request, id):
+    student = get_object_or_404(Students, id=id)
+    context = {
+        'username': auth.get_user(request).username,
+        'student': student
+    }
+    return render(request, 'student_page.html', context)
 
 def edit_stud_page(request):
     return render(request, 'edit_stud_page.html', {'username': auth.get_user(request).username})
@@ -57,12 +62,11 @@ def documents_third(request):
 #     return render(request, 'documents.html')
 
 def students(request):
-    stud = Students.objects.all()
-    return render(request, 'students.html', {'stud': stud})
+    students = Students.objects.all()
+    return render(request, 'students.html', {'students': students})
 
 def commissions(request):
     return render(request, 'commissions.html')
-
 
 def add_student(request):
     if request.method == 'POST':
