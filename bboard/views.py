@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Students
 from docxtpl import DocxTemplate
 from django.contrib import auth
+import io
 
 
 def login_page(request):
@@ -33,7 +34,39 @@ def student_page(request, id):
         'username': auth.get_user(request).username,
         'student': student
     }
+
+
     return render(request, 'student_page.html', context)
+
+def download_document(request):
+    name = "Aliya"
+
+    doc = DocxTemplate("bboard/static/invite.docx")
+
+    context = {
+        "todayStr": "03.03.2023",
+        "recipientName": name,
+        "evntDtStr": "08.03.2023",
+        "venueStr": "the beach",
+        "bannerImg": ""
+    }
+
+    doc.render(context)
+
+    doc.save("aaaa_{0}.docx".format(name))
+    doc_name = str("aaaa_{0}.docx".format(name))
+    print(doc_name)
+
+    # Создать HTTP-ответ, который будет содержать созданный документ
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+    response['Content-Disposition'] = 'attachment; filename={doc_name}'
+
+    with io.open(doc_name, 'rb') as file:
+        document_bytes = file.read()
+
+    response['Content-Length'] = len(document_bytes)
+    response.write(document_bytes)
+    return response
 
 def edit_stud_page(request):
     return render(request, 'edit_stud_page.html', {'username': auth.get_user(request).username})

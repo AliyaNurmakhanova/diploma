@@ -18,6 +18,7 @@ urlpatterns = [
     path('/documentssecond/', views.documents_second, name='documents_list_second'),
     path('/documentsthird/', views.documents_third, name='documents_list_third'),
     path('/add/', views.add_student, name='add_students'),
+    path('/download/', views.download_document, name='download_document'),
 ]
 
 if settings.DEBUG:
