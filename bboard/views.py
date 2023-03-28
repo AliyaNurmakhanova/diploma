@@ -1,10 +1,8 @@
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Students
 from docxtpl import DocxTemplate
 from django.contrib import auth
-
 
 def login_page(request):
     if request.method == 'POST':
@@ -37,7 +35,7 @@ def forgot_pw(request):
 
 def documents(request):
     students = Students.objects.all()
-    return render(request, 'document_page.html', {'students': students})
+    return render(request, 'document_page.html', {'students': students, 'username': auth.get_user(request).username})
     def example():
         personNames = ["Aliya", "Samal", "Safia", "Kamshat"]
 
@@ -58,24 +56,15 @@ def documents(request):
 
 def documents_second(request):
     students = Students.objects.all()
-    return render(request, 'document_page_second.html', {'students': students})
+    return render(request, 'document_page_second.html', {'students': students, 'username': auth.get_user(request).username})
 
 def documents_third(request):
     students = Students.objects.all()
-    return render(request, 'document_page_third.html', {'students': students})
-
-# def students(request):
-#     return render(request, 'students.html')
-
-# def commissions(request):
-#     return render(request, 'commissions.html')
-
-# def documents(request):
-#     return render(request, 'documents.html')
+    return render(request, 'document_page_third.html', {'students': students, 'username': auth.get_user(request).username})
 
 def students(request):
     stud = Students.objects.all()
-    return render(request, 'students.html', {'stud': stud})
+    return render(request, 'students.html', {'stud': stud, 'username': auth.get_user(request).username})
 
 def commissions(request):
-    return render(request, 'commissions.html')
+    return render(request, 'commissions.html', {'username': auth.get_user(request).username})
