@@ -17,7 +17,7 @@ urlpatterns = [
     path('/documentssecond/', views.documents_second, name='documents_list_second'),
     path('/documentsthird/', views.documents_third, name='documents_list_third'),
     path('/add/', views.add_student, name='add_students'),
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
