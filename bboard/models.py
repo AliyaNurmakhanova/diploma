@@ -1,6 +1,7 @@
 from django.db import models
 
 class Students(models.Model):
+    img = models.ImageField(upload_to='images')
     name = models.CharField('Имя', max_length=50)
     lastname = models.CharField('Фамилия', max_length=50)
     middlename = models.CharField('Отчество', max_length=50)

@@ -26,6 +26,7 @@ def logout_page(request):
 def index(request):
     return render(request, 'index.html', {'username': auth.get_user(request).username})
 
+
 def student_page(request, id):
     student = get_object_or_404(Students, id=id)
     context = {
