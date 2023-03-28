@@ -1,12 +1,13 @@
 from django.db import models
 
 class Students(models.Model):
+    img = models.ImageField(upload_to='images')
     name = models.CharField('Имя', max_length=50)
     lastname = models.CharField('Фамилия', max_length=50)
     middlename = models.CharField('Отчество', max_length=50)
-    img = models.ImageField(upload_to='images/', null=True, blank=True)
     birthday = models.DateField('День рождения')
     diploma_title = models.CharField('Тема дипломного проекта', max_length=100)
+    iin = models.CharField('ИИН', max_length=100, default='default_value')
 
     def __str__(self):
         return self.name
