@@ -1,8 +1,10 @@
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Students
 from docxtpl import DocxTemplate
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
 
 def login_page(request):
     if request.method == 'POST':
@@ -17,15 +19,45 @@ def login_page(request):
     else:
         return render(request, 'login_page.html')
 
+def index(request):
+    if not request.user.groups.filter(name='secretary').exists():
+        return HttpResponseForbidden()
+
+    return render(request, 'index.html', {'username': auth.get_user(request).username})
+
+def commissions(request):
+    if not request.user.groups.filter(name='commission').exists():
+        return HttpResponseForbidden()
+    return render(request, 'commissions_list', {'username': auth.get_user(request).username})
+
 def logout_page(request):
     logout(request)
     return redirect('/bboard')
 
-def index(request):
-    return render(request, 'index.html', {'username': auth.get_user(request).username})
+# @login_required(login_url='/login/')
+# def secretary_page(request):
+#     if request.user.is_secretary:
+#         return render(request, 'index.html', {'username': auth.get_user(request).username})
+#     else:
+#         return redirect('login_page.html')
+#
+# @login_required(login_url='/login/')
+# def commission_page(request):
+#     if request.user.is_commission:
+#         return render(request, 'commissions.html', {'username': auth.get_user(request).username})
+#     else:
+#         return redirect('login_page.html')
 
-def student_page(request):
-    return render(request, 'student_page.html', {'username': auth.get_user(request).username})
+# def index(request):
+#     return render(request, 'index.html', {'username': auth.get_user(request).username})
+
+def student_page(request, id):
+    student = get_object_or_404(Students, id=id)
+    context = {
+        'username': auth.get_user(request).username,
+        'student': student
+    }
+    return render(request, 'student_page.html', context)
 
 def edit_stud_page(request):
     return render(request, 'edit_stud_page.html', {'username': auth.get_user(request).username})
@@ -54,6 +86,9 @@ def documents(request):
 
             doc.save("aaaa_{0}.docx".format(p))
 
+    return render(request, 'document_page.html', {'students': students})
+
+
 def documents_second(request):
     students = Students.objects.all()
     return render(request, 'document_page_second.html', {'students': students, 'username': auth.get_user(request).username})
@@ -68,3 +103,25 @@ def students(request):
 
 def commissions(request):
     return render(request, 'commissions.html', {'username': auth.get_user(request).username})
+
+    students = Students.objects.all()
+    return render(request, 'students.html', {'students': students})
+
+def add_student(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        lastname = request.POST.get('lastname')
+        middlename = request.POST.get('middlename')
+        birthday = request.POST.get('birthday')
+        diploma_title = request.POST.get('diploma_title')
+
+        stud = Students(
+            name = name,
+            lastname = lastname,
+            middlename = middlename,
+            birthday = birthday,
+            diploma_title = diploma_title
+        )
+        stud.save()
+        return redirect('students_list')
+    return render(request, 'students.html')

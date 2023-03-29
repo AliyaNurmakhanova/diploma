@@ -1,10 +1,11 @@
 {% extends 'basic.html' %}
-{% load static %}
+{% load static i18n %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css">
 
-{% block title  %} Main {% endblock title %}
+{% block title  %} Главная страница {% endblock title %}
 
 {% block content %}
+
 <style>
 .section {
     padding-top: 30px;
@@ -157,21 +158,6 @@ p {
 <div class="services section" id="services">
   <div class="container">
     <div class="row">
-<!--      <div class="col-lg-4 col-md-6">-->
-<!--        <div class="service-item">-->
-<!--&lt;!&ndash;          <div class="icon">&ndash;&gt;-->
-<!--&lt;!&ndash;            <img src="{% static 'images/add-students.png' %}" alt="web experts">&ndash;&gt;-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--          <div class="main-content">-->
-<!--            <h4>Мой профиль</h4>-->
-<!--            <p>You can start learning HTML CSS by modifying free templates from our website too.</p>-->
-<!--            <div class="main-button">-->
-<!--              <a href="#">Перейти</a>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
       <div class="col-lg-4 col-md-6">
         <div class="service-item">
 <!--          <div class="icon">-->
@@ -181,7 +167,7 @@ p {
             <h4>Студенты</h4>
             <p>Whenever you need free templates in HTML CSS, you just remember TemplateMo website.</p>
             <div class="main-button">
-              <a href="{% url 'student' %}">Перейти</a>
+              <a href="{% url 'students_list' %}">Перейти</a>
             </div>
           </div>
         </div>
@@ -216,81 +202,6 @@ p {
           </div>
         </div>
       </div>
-
-<!--      <div class="col-lg-4 col-md-6">-->
-<!--        <div class="service-item">-->
-<!--&lt;!&ndash;          <div class="icon">&ndash;&gt;-->
-<!--&lt;!&ndash;            <img src="{% static 'images/add-students.png' %}" alt="web experts">&ndash;&gt;-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--          <div class="main-content">-->
-<!--            <h4>Расписание</h4>-->
-<!--            <p>You can start learning HTML CSS by modifying free templates from our website too.</p>-->
-<!--            <div class="main-button">-->
-<!--              <a href="#">Перейти</a>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="col-lg-4 col-md-6">-->
-<!--        <div class="service-item">-->
-<!--&lt;!&ndash;          <div class="icon">&ndash;&gt;-->
-<!--&lt;!&ndash;            <img src="{% static 'images/add-students.png' %}" alt="web experts">&ndash;&gt;-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--          <div class="main-content">-->
-<!--            <h4>Аналитика</h4>-->
-<!--            <p>You can start learning HTML CSS by modifying free templates from our website too.</p>-->
-<!--            <div class="main-button">-->
-<!--              <a href="#">Перейти</a>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="col-lg-4 col-md-6">-->
-<!--        <div class="service-item">-->
-<!--&lt;!&ndash;          <div class="icon">&ndash;&gt;-->
-<!--&lt;!&ndash;            <img src="{% static 'images/add-students.png' %}" alt="web experts">&ndash;&gt;-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--          <div class="main-content">-->
-<!--            <h4>Информации</h4>-->
-<!--            <p>You can start learning HTML CSS by modifying free templates from our website too.</p>-->
-<!--            <div class="main-button">-->
-<!--              <a href="#">Перейти</a>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="col-lg-4 col-md-6">-->
-<!--        <div class="service-item">-->
-<!--&lt;!&ndash;          <div class="icon">&ndash;&gt;-->
-<!--&lt;!&ndash;            <img src="{% static 'images/add-students.png' %}" alt="web experts">&ndash;&gt;-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--          <div class="main-content">-->
-<!--            <h4>Новости</h4>-->
-<!--            <p>You can start learning HTML CSS by modifying free templates from our website too.</p>-->
-<!--            <div class="main-button">-->
-<!--              <a href="#">Перейти</a>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="col-lg-4 col-md-6">-->
-<!--        <div class="service-item">-->
-<!--&lt;!&ndash;          <div class="icon">&ndash;&gt;-->
-<!--&lt;!&ndash;            <img src="{% static 'images/add-students.png' %}" alt="web experts">&ndash;&gt;-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--          <div class="main-content">-->
-<!--            <h4>Прочее</h4>-->
-<!--            <p>You can start learning HTML CSS by modifying free templates from our website too.</p>-->
-<!--            <div class="main-button">-->
-<!--              <a href="#">Перейти</a>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
     </div>
   </div>
 </div>

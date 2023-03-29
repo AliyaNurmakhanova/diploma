@@ -62,7 +62,7 @@ background: #f2f4fa;
             <div class="col-lg-4 col-md-4 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a href="{% url 'index' %}" class="previous round"><img width="25px" src="{% static 'images/back.png' %}"></a>
+                        <a href="{% url 'students_list' %}" class="previous round"><img width="25px" src="{% static 'images/back.png' %}"></a>
                         <header class="panel-title">
                             <div class="text-center">
                                 <strong>Информация о Студенте</strong>
@@ -72,7 +72,7 @@ background: #f2f4fa;
                     <div class="panel-body">
                         <div class="text-center" id="author">
                             <img width="220px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                            <h3>Фамилия Имя Отчество</h3>
+                            <h3>{{student.lastname}} {{student.name}} {{student.middlename}}</h3>
                             <small class="label label-warning">Бакалавр</small>
                             <h3></h3>
 <!--                            <p>Я простой Русский пацан и мне всё по барабану.</p>-->

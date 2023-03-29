@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static i18n  %}
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,6 +36,14 @@
             {% if username %}
                 <li><a href="{% url 'logout' %}"> Выйти <img src="{% static 'images/eee.png' %}" alt="" width="25px"></a></li>
             {% endif %}
+
+
+
+<!--            <select class="change-lang">-->
+<!--                <option value="kz">Каз</option>-->
+<!--                <option value="ru">Рус</option>-->
+<!--                <option value="en">ENG</option>-->
+<!--            </select>-->
 
 <!--            <li><a href="{% url 'login' %}">Выйти <img src="{% static 'images/eee.png' %}" alt="" width="25px"></a></li>-->
 

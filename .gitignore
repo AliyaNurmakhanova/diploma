@@ -1,1 +1,12 @@
+
 diploma/settings.py
+
+diploma/settings.py
+*.pyc
+*~
+__pycache__
+myvenv
+db.sqlite3
+/static
+.DS_Store
+>>>>>>> 728a56491acb5dd93d7b38a1d77a68657407b24a
