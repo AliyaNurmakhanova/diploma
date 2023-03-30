@@ -1,5 +1,4 @@
 import logging
-from django.contrib.auth.models import Group
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Students
