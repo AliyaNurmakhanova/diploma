@@ -1,17 +1,15 @@
 import logging
-
+from django.contrib.auth.models import Group
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Students
 from docxtpl import DocxTemplate
 from django.contrib import auth
-import io
 
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponseForbidden, HttpResponse
 
 import io
-
 
 def login_page(request):
     if request.method == 'POST':
@@ -20,45 +18,36 @@ def login_page(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('index')
+            if user.groups.filter(name='secretary').exists():
+                return redirect('bboard/index/')
+            elif user.groups.filter(name='commission').exists():
+                return redirect('bboard/commissions/')
+            else:
+                return redirect('/bboard')
         else:
             return render(request, 'login_page.html', {'error': 'Неправильное имя пользователя или пароль'})
     else:
         return render(request, 'login_page.html')
 
+@login_required
+@user_passes_test(lambda u: u.groups.filter(name='secretary').exists())
 def index(request):
-    if not request.user.groups.filter(name='secretary').exists():
-        return HttpResponseForbidden()
-
     return render(request, 'index.html', {'username': auth.get_user(request).username})
 
+@login_required
+@user_passes_test(lambda u: u.groups.filter(name='commission').exists())
 def commissions(request):
-    if not request.user.groups.filter(name='commission').exists():
-        return HttpResponseForbidden()
-    return render(request, 'commissions_list', {'username': auth.get_user(request).username})
+    return render(request, 'commissions.html', {'username': auth.get_user(request).username})
 
 def logout_page(request):
     logout(request)
-    return redirect('/bboard')
-
-# @login_required(login_url='/login/')
-# def secretary_page(request):
-#     if request.user.is_secretary:
-#         return render(request, 'index.html', {'username': auth.get_user(request).username})
-#     else:
-#         return redirect('login_page.html')
-#
-# @login_required(login_url='/login/')
-# def commission_page(request):
-#     if request.user.is_commission:
-#         return render(request, 'commissions.html', {'username': auth.get_user(request).username})
-#     else:
-#         return redirect('login_page.html')
+    return redirect('login')
 
 # def index(request):
 #     return render(request, 'index.html', {'username': auth.get_user(request).username})
 
-
+# def commissions(request):
+#     return render(request, 'commissions.html', {'username': auth.get_user(request).username})
 
 def student_page(request, id):
     student = get_object_or_404(Students, id=id)
@@ -66,7 +55,6 @@ def student_page(request, id):
         'username': auth.get_user(request).username,
         'student': student
     }
-
 
     return render(request, 'student_page.html', context)
 
@@ -153,12 +141,6 @@ def students(request):
     }
     return render(request, 'students.html', context)
 
-def commissions(request):
-    return render(request, 'commissions.html', {'username': auth.get_user(request).username})
-
-    students = Students.objects.all()
-    return render(request, 'students.html', {'students': students})
-
 def add_student(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -177,3 +159,53 @@ def add_student(request):
         stud.save()
         return redirect('students_list')
     return render(request, 'students.html')
+
+
+# def login_page(request):
+#     if request.method == 'POST':
+#         username = request.POST['username']
+#         password = request.POST['password']
+#         user = authenticate(request, username=username, password=password)
+#         if user is not None:
+#             if user.is_secretary:
+#                 user.groups.add(Group.objects.get(name='secretaries'))
+#                 login(request, user)
+#                 return redirect('index.html')
+#             elif user.is_commission:
+#                 user.groups.add(Group.objects.get(name='commission'))
+#             login(request, user)
+#             return redirect('commissions.html')
+#         else:
+#             return render(request, 'login_page.html', {'error': 'Неправильное имя пользователя или пароль'})
+#     else:
+#         return render(request, 'login_page.html')
+
+# @login_required(login_url='/login/')
+# def index(request):
+#     if request.user.is_secretary:
+#         return render(request, 'index.html', {'username': auth.get_user(request).username})
+#     else:
+#         return redirect('login_page.html')
+#
+# @login_required(login_url='/login/')
+# def commissions(request):
+#     if request.user.is_commission:
+#         return render(request, 'commissions.html', {'username': auth.get_user(request).username})
+#     else:
+#         return redirect('login_page.html')
+
+# def is_secretary(user):
+#     return user.groups.filter(name='secretaries').exists()
+#
+# @user_passes_test(is_secretary)
+# @login_required
+# def index(request):
+#     return render(request, 'index.html', {'username': auth.get_user(request).username})
+#
+# def is_commission(user):
+#     return user.groups.filter(name='commission').exists()
+#
+# @user_passes_test(is_commission)
+# @login_required
+# def commissions(request):
+#     return render(request, 'commissions.html', {'username': auth.get_user(request).username})
