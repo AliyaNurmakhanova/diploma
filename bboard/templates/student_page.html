@@ -71,7 +71,8 @@ background: #f2f4fa;
                     </div>
                     <div class="panel-body">
                         <div class="text-center" id="author">
-                            <img width="220px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+<!--                            <img width="220px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">-->
+                            <img width="220px" src="{{ student.img.url }}">
                             <h3>{{student.lastname}} {{student.name}} {{student.middlename}}</h3>
                             <small class="label label-warning">Бакалавр</small>
                             <h3></h3>
@@ -93,13 +94,14 @@ background: #f2f4fa;
                                 <br><br>
                                 <table class="table table-th-block">
                                     <tbody>
-                                    <tr><td class="active">ИИН:</td><td>хххххххххххх</td></tr>
-                                    <tr><td class="active">Дата рождения:</td><td>дд-мм-гггг</td></tr>
-                                    <tr><td class="active">Рабочий учебный план:</td><td>6B06102 Computer Science 2019-20 Полная форма обучения</td></tr>
-                                    <tr><td class="active">ОП / Специальность:</td><td>6B06102 Computer Science</td></tr>
-                                    <tr><td class="active">Тема дирломной работы:</td><td>*************</td></tr>
+                                    <tr><td class="active">ИИН:</td><td>{{student.iin}}</td></tr>
+                                    <tr><td class="active">Дата рождения:</td><td>{{student.birthday}}</td></tr>
+                                    <tr><td class="active">ОП / Специальность:</td><td>{{student.speciality}}</td></tr>
+                                    <tr><td class="active">Тема дипломной работы:</td><td>{{student.diploma_title}}</td></tr>
                                     <tr><td class="active">Бірбәле:</td><td>Бірбәле</td></tr>
                                     <tr><td class="active">Бірбәле:</td><td>Бірбәле</td></tr>
+                                    <tr><td class="active">Презентация </td><td>Бірбәле</td></tr>
+                                    <tr><td class="active"><a href="{% url 'download_document' stud_id=student.id %}"> Скачать Протокол 2 </a></td><td></td></tr>
 <!--                                    <tr><td class="active">Бірбәле:</td><td><i class="fa fa-star" style="color:red"></i> <i class="fa fa-star" style="color:red"></i> <i class="fa fa-star" style="color:red"></i> <i class="fa fa-star" style="color:red"></i> 4/5</td></tr>-->
 <!--                                    <tr><td class="active">Плагин рейтинга:</td><td><a href="https://bootstraptema.ru/stuff/plugins_bootstrap/improvement/bootstrap_star_rating/12-1-0-73" target="_blank">http://goo.gl/bGGXuw</a></td></tr>-->
                                     </tbody>

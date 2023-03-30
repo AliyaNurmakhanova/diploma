@@ -1,10 +1,15 @@
+import logging
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Students
 from docxtpl import DocxTemplate
 from django.contrib import auth
+
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponse
+
+import io
+
 
 def login_page(request):
     if request.method == 'POST':
@@ -51,13 +56,53 @@ def logout_page(request):
 # def index(request):
 #     return render(request, 'index.html', {'username': auth.get_user(request).username})
 
+
 def student_page(request, id):
     student = get_object_or_404(Students, id=id)
     context = {
         'username': auth.get_user(request).username,
         'student': student
     }
+
+
     return render(request, 'student_page.html', context)
+
+def download_document(request, stud_id):
+    logging.basicConfig(filename='example.log', level=logging.DEBUG)
+    student = get_object_or_404(Students, id=stud_id)
+    context = {
+        'student': student
+    }
+    name = student.name
+    lastname = student.lastname
+    middlename = student.middlename
+
+    doc = DocxTemplate("bboard/static/protocol_2.docx")
+
+    context = {
+        "lastname": lastname,
+        "name": name,
+        "middlename": middlename,
+        "speciality": "6B0602102 CS",
+    }
+
+    doc.render(context)
+
+    doc.save("{0}_{1}_Протокол_2.docx".format(name, lastname))
+    doc_name = f"{name}_{lastname}_Протокол_2.docx"
+    logging.debug("Document name: {}".format(doc_name))
+    print(doc_name)
+
+    # Создать HTTP-ответ, который будет содержать созданный документ
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+    response['Content-Disposition'] = f'attachment; filename={doc_name}'
+
+    with io.open(doc_name, 'rb') as file:
+        document_bytes = file.read()
+
+    response['Content-Length'] = len(document_bytes)
+    response.write(document_bytes)
+    return response
 
 def edit_stud_page(request):
     return render(request, 'edit_stud_page.html', {'username': auth.get_user(request).username})
@@ -98,8 +143,12 @@ def documents_third(request):
     return render(request, 'document_page_third.html', {'students': students, 'username': auth.get_user(request).username})
 
 def students(request):
-    stud = Students.objects.all()
-    return render(request, 'students.html', {'stud': stud, 'username': auth.get_user(request).username})
+    students = Students.objects.all()
+    context = {
+        'username': auth.get_user(request).username,
+        'students': students
+    }
+    return render(request, 'students.html', context)
 
 def commissions(request):
     return render(request, 'commissions.html', {'username': auth.get_user(request).username})
