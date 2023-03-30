@@ -109,6 +109,11 @@ USE_I18N = True
 
 USE_TZ = False
 
+# Основной url для управления медиафайлами
+MEDIA_URL = '/media/'
+
+# Путь хранения картинок
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # gettext = lambda s: s
 # LANGUAGES = (

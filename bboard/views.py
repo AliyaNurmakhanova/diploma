@@ -1,9 +1,11 @@
 import logging
+
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Students
 from docxtpl import DocxTemplate
 from django.contrib import auth
+import io
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden, HttpResponse
@@ -55,6 +57,7 @@ def logout_page(request):
 
 # def index(request):
 #     return render(request, 'index.html', {'username': auth.get_user(request).username})
+
 
 
 def student_page(request, id):
