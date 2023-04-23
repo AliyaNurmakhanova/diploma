@@ -20,7 +20,7 @@ def login_page(request):
             if user.groups.filter(name='secretary').exists():
                 return redirect('bboard/index/')
             elif user.groups.filter(name='commission').exists():
-                return redirect('bboard/commissions/')
+                return redirect('bboard/com_main/')
             else:
                 return redirect('/bboard')
         else:
@@ -35,8 +35,8 @@ def index(request):
 
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name='commission').exists())
-def commissions(request):
-    return render(request, 'commissions.html', {'username': auth.get_user(request).username})
+def com_main(request):
+    return render(request, 'com_main.html', {'username': auth.get_user(request).username})
 
 def logout_page(request):
     logout(request)
@@ -45,8 +45,8 @@ def logout_page(request):
 # def index(request):
 #     return render(request, 'index.html', {'username': auth.get_user(request).username})
 
-# def commissions(request):
-#     return render(request, 'commissions.html', {'username': auth.get_user(request).username})
+def commissions(request):
+    return render(request, 'commissions.html', {'username': auth.get_user(request).username})
 
 def student_page(request, id):
     student = get_object_or_404(Students, id=id)
