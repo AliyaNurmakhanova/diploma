@@ -36,7 +36,12 @@ def index(request):
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name='commission').exists())
 def com_main(request):
-    return render(request, 'com_main.html', {'username': auth.get_user(request).username})
+    students = Students.objects.all()
+    context = {
+        'username': auth.get_user(request).username,
+        'students': students
+    }
+    return render(request, 'com_main.html', context)
 
 def logout_page(request):
     logout(request)
@@ -56,6 +61,15 @@ def student_page(request, id):
     }
 
     return render(request, 'student_page.html', context)
+
+def com_stud_page(request, id):
+    student = get_object_or_404(Students, id=id)
+    context = {
+        'username': auth.get_user(request).username,
+        'student': student
+    }
+
+    return render(request, 'com_stud_page.html', context)
 
 def download_document(request, stud_id):
     logging.basicConfig(filename='example.log', level=logging.DEBUG)
